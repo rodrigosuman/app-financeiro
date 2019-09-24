@@ -13,35 +13,33 @@ const mainNavigation = createMaterialBottomTabNavigator(
     Home: {
       screen: Main,
       navigationOptions: () => ({
-        tabBarIcon: <Icon name="home" size={20} color="#fff" />,
-        tabBarColor: '#574BDD',
+        tabBarIcon: <Icon name="home" size={23} />,
       }),
     },
     Lançamentos: {
       screen: Lancamentos,
       navigationOptions: () => ({
-        tabBarIcon: <Icon name="list" size={20} color="#fff" />,
-        tabBarColor: '#2A2082',
+        tabBarIcon: <Icon name="list" size={23} />,
       }),
     },
     Gráficos: {
       screen: Graficos,
       navigationOptions: () => ({
-        tabBarIcon: <Icon name="pie-chart" size={20} color="#fff" />,
-        tabBarColor: '#372E9B',
+        tabBarIcon: <Icon name="pie-chart" size={23} />,
       }),
     },
     Cadastros: {
       screen: Cadastros,
       navigationOptions: () => ({
-        tabBarIcon: <Icon name="cog" size={20} color="#fff" />,
-        tabBarColor: '#473EAD',
+        tabBarIcon: <Icon name="cog" size={23} />,
       }),
     },
   },
   {
     shifting: true,
     initialRouteName: 'Lançamentos',
+    activeColor: '#666',
+    barStyle: {backgroundColor: '#fff'},
   },
 );
 
