@@ -1,5 +1,5 @@
 import React from 'react';
-
+import moment from 'moment';
 import {
   Container,
   RegistryTitle,
@@ -10,12 +10,17 @@ import {
 
 export default function Lancamento({data}) {
   return (
-    <Container>
+    <Container
+      style={
+        data.conciliado
+          ? {borderLeftColor: '#22D278'}
+          : {borderLeftColor: '#EF335E'}
+      }>
       <Header>
-        <RegistryTitle>{data.title}</RegistryTitle>
-        <RegistryValue>{data.value}</RegistryValue>
+        <RegistryTitle>{data.descricao}</RegistryTitle>
+        <RegistryValue>R$ {data.valor.toFixed(2)}</RegistryValue>
       </Header>
-      <RegistryDate>{data.date}</RegistryDate>
+      <RegistryDate>{moment(data.data).format('DD/MM/YYYY')}</RegistryDate>
     </Container>
   );
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View.attrs({
-  shadowColor: '#000',
+  shadowColor: '#BF00FF',
   shadowOffset: {
     width: 0,
     height: 2,
@@ -9,12 +9,11 @@ export const Container = styled.View.attrs({
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
 
-  elevation: 3,
+  elevation: 4,
 })`
   width: 100%;
-  background-color: #fff;
+  background-color: #111;
   border-left-width: 4px;
-  border-left-color: #56c143;
   margin-bottom: 12px;
   flex-direction: column;
   border-radius: 5px;
@@ -28,14 +27,14 @@ export const Header = styled.View`
 
 export const RegistryTitle = styled.Text`
   font-size: 18px;
-  color: #333;
+  color: #777;
 `;
 
 export const RegistryDate = styled.Text`
-  color: #666;
+  color: #444;
 `;
 
 export const RegistryValue = styled.Text`
   font-size: 20px;
-  color: #333;
+  color: #5c6672;
 `;

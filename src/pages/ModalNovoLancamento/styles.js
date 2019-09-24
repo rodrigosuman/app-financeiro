@@ -7,7 +7,7 @@ export const Container = styled.View`
   padding: 12px;
 `;
 
-export const ViewSearch = styled.View.attrs({
+export const ViewContainer = styled.View.attrs({
   shadowColor: '#fff',
   shadowOffset: {
     width: 0,
@@ -24,22 +24,27 @@ export const ViewSearch = styled.View.attrs({
   padding: 5px;
   border: 1px;
   border-color: #22d278;
+  margin-bottom: 15px;
 `;
 
-export const SearchInput = styled.TextInput.attrs({
+export const Input = styled.TextInput.attrs({
   placeholderTextColor: '#666',
 })`
   font-size: 16px;
   margin-left: 10px;
 `;
 
-export const List = styled.FlatList.attrs({
-  showsVerticalScrollIndicator: false,
-})`
-  margin-top: 20px;
+export const CaptionButton = styled.Text`
+  font-size: 20px;
+  flex: 1;
+  color: #666;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const TextFeedback = styled.Text`
-  color: #666;
-  text-align: center;
+export const ButtonSubmit = styled.Button`
+  width: 100%;
+  height: 68px;
+  border-radius: 5px;
+  background-color: #22d278;
 `;
