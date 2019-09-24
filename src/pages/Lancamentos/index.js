@@ -1,18 +1,41 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {Container} from '~/pages/Lancamentos/styles';
+import FAB from 'react-native-fab';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// import { Container } from './styles';
+import Lancamento from '~/pages/Lancamento';
+
+import {
+  Container,
+  ViewSearch,
+  SearchInput,
+  List,
+} from '~/pages/Lancamentos/styles';
+
+import {registrys} from '~/variables/registrys';
 
 export default function Lancamentos() {
   return (
     <Container>
-      <Text style={{color: '#5C6672', fontSize: 20, textAlign: 'center'}}>
-        Lançamentos
-      </Text>
-      <Text style={{color: '#FE9339', fontSize: 15, textAlign: 'center'}}>
-        Por Rodrigo Suman
-      </Text>
+      <ViewSearch>
+        <SearchInput placeholder="Buscar lançamento..." />
+      </ViewSearch>
+
+      <List
+        keyboardShouldPersistTaps="handle"
+        data={registrys}
+        keyExtractor={item => String(item.id)}
+        renderItem={({item}) => <Lancamento data={item} />}
+      />
+
+      <FAB
+        buttonColor="#2A2082"
+        iconTextColor="#FFFFFF"
+        onClickAction={() => {
+          console.log('FAB pressed');
+        }}
+        visible={true}
+        iconTextComponent={<Icon name="add" />}
+      />
     </Container>
   );
 }

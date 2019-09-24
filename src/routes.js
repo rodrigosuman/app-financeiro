@@ -41,7 +41,7 @@ const mainNavigation = createMaterialBottomTabNavigator(
   },
   {
     shifting: true,
-    initialRouteName: 'Home',
+    initialRouteName: 'Lançamentos',
   },
 );
 
