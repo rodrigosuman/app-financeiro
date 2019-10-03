@@ -42,7 +42,7 @@ export default function Main() {
               borderLeftWidth: 3,
               paddingLeft: 5,
             }}>
-            <DescricaoResumo>Receita</DescricaoResumo>
+            <DescricaoResumo>Receitas</DescricaoResumo>
             <ValorResumo>R$ 5000,00</ValorResumo>
           </ContainerDescricao>
 
@@ -52,7 +52,7 @@ export default function Main() {
               borderLeftWidth: 3,
               paddingLeft: 5,
             }}>
-            <DescricaoResumo>Despesa</DescricaoResumo>
+            <DescricaoResumo>Despesas</DescricaoResumo>
             <ValorResumo>R$ 0,00</ValorResumo>
           </ContainerDescricao>
 
