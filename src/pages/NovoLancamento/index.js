@@ -6,15 +6,9 @@ import Moment from 'moment';
 
 import {getObjects, save} from '~/services/realm';
 
-import {
-  Container,
-  ViewContainer,
-  Input,
-  ButtonSubmit,
-  Picker,
-} from '~/pages/ModalNovoLancamento/styles';
+import {Container, ViewContainer, Input, ButtonSubmit, Picker} from './styles';
 
-export default function ModalNovoLancamento({open, setModalVisible}) {
+export default function NovoLancamento({open, setModalVisible, receita}) {
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState(0);
   const [data, setData] = useState(Moment());
@@ -29,8 +23,8 @@ export default function ModalNovoLancamento({open, setModalVisible}) {
   }
 
   useEffect(() => {
-    getObjects('tipos', setTipos);
-  }, []);
+    getObjects('tipos', setTipos, true, `receita = ${receita}`);
+  }, [receita]);
 
   return (
     <Modal

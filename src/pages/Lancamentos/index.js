@@ -1,30 +1,23 @@
 import React, {useState, useEffect} from 'react';
 
-import {StyleSheet} from 'react-native';
-import {FAB} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {FloatingAction} from 'react-native-floating-action';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {
-  Container,
-  ViewSearch,
-  SearchInput,
-  List,
-  TextFeedback,
-} from '~/pages/Lancamentos/styles';
+import {Container, ViewSearch, SearchInput, List, TextFeedback} from './styles';
 
-import {save, getObjects, deleteAll} from '~/services/realm';
+import {save, getObjects} from '~/services/realm';
 
 import Lancamento from '~/pages/Lancamento';
-import ModalNovoLancamento from '~/pages/ModalNovoLancamento';
+import NovoLancamento from '~/pages/NovoLancamento';
 
 export default function Lancamentos() {
   const [input, setInput] = useState('');
   const [lancamentos, setLancamentos] = useState([]);
-  const [modalOpen, setOpen] = useState(false);
+  const [receita, setReceita] = useState(false);
+  const [modalLancamentoOpen, setOpenLancamento] = useState(false);
 
   useEffect(() => {
     getObjects('lancamentos', setLancamentos);
-    // deleteAll();
   }, []);
 
   return (
@@ -57,26 +50,50 @@ export default function Lancamentos() {
         <TextFeedback>Não há lancamentos.</TextFeedback>
       )}
 
-      <ModalNovoLancamento open={modalOpen} setModalVisible={setOpen} />
+      <NovoLancamento
+        open={modalLancamentoOpen}
+        setModalVisible={setOpenLancamento}
+        receita={receita}
+      />
 
-      <FAB
-        style={styles.fab}
-        small
-        icon={() => {
-          return <Icon name="add" size={23} color="#fff" />;
+      <FloatingAction
+        actions={actions}
+        buttonSize={40}
+        onPressItem={name => {
+          switch (name) {
+            case 'bt_receita':
+              setReceita(true);
+              setOpenLancamento(true);
+              break;
+
+            case 'bt_despesa':
+              setReceita(false);
+              setOpenLancamento(true);
+              break;
+
+            default:
+              setOpenLancamento(false);
+              break;
+          }
         }}
-        onPress={() => setOpen(true)}
       />
     </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    bottom: 0,
-    color: '#fff',
+const actions = [
+  {
+    text: 'Receita',
+    icon: <Icon color="#fff" name="line-chart" />,
+    color: '#2ECC71',
+    name: 'bt_receita',
+    position: 1,
   },
-});
+  {
+    text: 'Despesa',
+    icon: <Icon color="#fff" name="level-down" />,
+    color: '#EE2E31',
+    name: 'bt_despesa',
+    position: 2,
+  },
+];

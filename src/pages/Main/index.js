@@ -11,7 +11,7 @@ import {
   ViewHeader,
   TituloHeader,
   MesHeader,
-} from '~/pages/Main/styles';
+} from './styles';
 
 export default function Main() {
   return (
