@@ -1,29 +1,29 @@
+import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #111;
+  background-color: #fff;
   justify-content: center;
   padding: 12px;
 `;
 
 export const ViewContainer = styled.View.attrs({
-  shadowColor: '#fff',
+  shadowColor: '#000',
   shadowOffset: {
     width: 0,
-    height: 2,
+    height: 1,
   },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
 
-  elevation: 3,
+  elevation: 1,
 })`
   flex-direction: column;
   width: 100%;
   border-radius: 5px;
+  color: #fff;
   padding: 5px;
-  border: 1px;
-  border-color: #22d278;
   margin-bottom: 15px;
 `;
 
@@ -32,6 +32,12 @@ export const Input = styled.TextInput.attrs({
 })`
   font-size: 16px;
   margin-left: 10px;
+  justify-content: flex-start;
+  color: #fff;
+`;
+
+export const Picker = styled.Picker`
+  font-size: 16px;
 `;
 
 export const CaptionButton = styled.Text`

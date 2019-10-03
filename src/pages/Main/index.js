@@ -1,18 +1,101 @@
 import React from 'react';
 
-import {Text} from 'react-native';
+import {ScrollView} from 'react-native';
 
-import {Container} from '~/pages/Main/styles';
+import {
+  Container,
+  ViewResumo,
+  DescricaoResumo,
+  ValorResumo,
+  ContainerDescricao,
+  ViewHeader,
+  TituloHeader,
+  MesHeader,
+} from '~/pages/Main/styles';
 
 export default function Main() {
   return (
     <Container>
-      <Text style={{color: '#5C6672', fontSize: 20, textAlign: 'center'}}>
-        App para controle financeiro utilizando ReactNative e Realm
-      </Text>
-      <Text style={{color: '#FE9339', fontSize: 15, textAlign: 'center'}}>
-        Por Rodrigo Suman
-      </Text>
+      <ScrollView style={{width: '100%'}}>
+        <ViewResumo
+          style={{
+            borderColor: '#1abc9c',
+          }}>
+          <ContainerDescricao>
+            <DescricaoResumo>Saldo geral</DescricaoResumo>
+            <ValorResumo>R$ 5000,00</ValorResumo>
+          </ContainerDescricao>
+        </ViewResumo>
+
+        <ViewResumo
+          style={{
+            borderColor: '#2695EE',
+          }}>
+          <ViewHeader>
+            <TituloHeader>Resumo mensal</TituloHeader>
+            <MesHeader>Set, 2019</MesHeader>
+          </ViewHeader>
+
+          <ContainerDescricao
+            style={{
+              borderLeftColor: '#69BF8A',
+              borderLeftWidth: 3,
+              paddingLeft: 5,
+            }}>
+            <DescricaoResumo>Receita</DescricaoResumo>
+            <ValorResumo>R$ 5000,00</ValorResumo>
+          </ContainerDescricao>
+
+          <ContainerDescricao
+            style={{
+              borderLeftColor: '#EE2E31',
+              borderLeftWidth: 3,
+              paddingLeft: 5,
+            }}>
+            <DescricaoResumo>Despesa</DescricaoResumo>
+            <ValorResumo>R$ 0,00</ValorResumo>
+          </ContainerDescricao>
+
+          <ContainerDescricao
+            style={{
+              borderLeftColor: '#2695EE',
+              borderLeftWidth: 3,
+              paddingLeft: 5,
+            }}>
+            <DescricaoResumo>Saldo</DescricaoResumo>
+            <ValorResumo>R$ 5000,00</ValorResumo>
+          </ContainerDescricao>
+        </ViewResumo>
+
+        <ViewResumo
+          style={{
+            borderColor: '#FBB02D',
+          }}>
+          <ViewHeader>
+            <TituloHeader>Pendências</TituloHeader>
+          </ViewHeader>
+
+          <ContainerDescricao
+            style={{
+              borderLeftColor: '#1ABC9C',
+              borderLeftWidth: 3,
+              paddingLeft: 5,
+            }}>
+            <DescricaoResumo>Receitas pendentes</DescricaoResumo>
+            <ValorResumo>R$ 5000,00</ValorResumo>
+          </ContainerDescricao>
+
+          <ContainerDescricao
+            style={{
+              borderLeftColor: '#FB6107',
+              borderLeftWidth: 3,
+              paddingLeft: 5,
+            }}>
+            <DescricaoResumo>Despesas pendentes</DescricaoResumo>
+            <ValorResumo>R$ 5000,00</ValorResumo>
+          </ContainerDescricao>
+        </ViewResumo>
+      </ScrollView>
     </Container>
   );
 }

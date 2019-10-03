@@ -1,28 +1,27 @@
 const Realm = require('realm');
 import {Lancamentos, TiposLancamentos} from '~/schemas';
 
-function getRealm() {
+export function getRealm() {
   return Realm.open({
     schema: [Lancamentos, TiposLancamentos],
-    schemaVersion: 5,
+    schemaVersion: 7,
   });
 }
 
-async function save(schema, data) {
+export async function save(schema, data) {
   getRealm()
     .then(realm => {
-      console.tron.log(realm);
+      console.tron.log(data);
       realm.write(() => {
         realm.create(schema, data);
       });
-      getObjects(schema);
     })
     .catch(error => {
       console.tron.warn(error);
     });
 }
 
-function getObjects(schema, callBack) {
+export function getObjects(schema, callBack) {
   getRealm()
     .then(realm => {
       let objects = realm.objects(schema);
@@ -33,4 +32,20 @@ function getObjects(schema, callBack) {
     });
 }
 
-export {getRealm, getObjects, save};
+export function deleteAll() {
+  getRealm()
+    .then(realm => {
+      realm.write(() => {
+        let lancamentos = realm.objects('lancamentos');
+        let tipos = realm.objects('tipos');
+
+        realm.delete(lancamentos);
+        realm.delete(tipos);
+      });
+    })
+    .catch(err => {
+      alert(err);
+    });
+}
+
+// export {getRealm, getObjects, save};

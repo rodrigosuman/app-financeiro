@@ -12,7 +12,7 @@ import {
   TextFeedback,
 } from '~/pages/Lancamentos/styles';
 
-import {save, getObjects} from '~/services/realm';
+import {save, getObjects, deleteAll} from '~/services/realm';
 
 import Lancamento from '~/pages/Lancamento';
 import ModalNovoLancamento from '~/pages/ModalNovoLancamento';
@@ -24,6 +24,7 @@ export default function Lancamentos() {
 
   useEffect(() => {
     getObjects('lancamentos', setLancamentos);
+    // deleteAll();
   }, []);
 
   return (
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     margin: 16,
     right: 0,
-    bottom: 56,
+    bottom: 0,
     color: '#fff',
   },
 });

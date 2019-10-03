@@ -1,8 +1,9 @@
+import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #111;
+  background-color: #fff;
   justify-content: center;
   padding: 12px;
 `;
@@ -22,7 +23,7 @@ export const ViewSearch = styled.View.attrs({
   width: 100%;
   border-radius: 5px;
   padding: 5px;
-  border: 1px;
+  border: ${StyleSheet.hairlineWidth}px;
   border-color: #22d278;
 `;
 

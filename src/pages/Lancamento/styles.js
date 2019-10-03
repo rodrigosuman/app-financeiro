@@ -12,7 +12,7 @@ export const Container = styled.View.attrs({
   elevation: 4,
 })`
   width: 100%;
-  background-color: #111;
+  background-color: #fff;
   border-left-width: 4px;
   margin-bottom: 12px;
   flex-direction: column;
