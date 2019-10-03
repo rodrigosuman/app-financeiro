@@ -3,24 +3,24 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import {headerStyle} from '~/variables/headerStyle';
 
-import Main from '~/pages/Main';
+import Graficos from '~/pages/Graficos';
 
 const mainNavigation = createStackNavigator(
   {
-    Dashboard: {
-      screen: Main,
+    Graficos: {
+      screen: Graficos,
       navigationOptions: () => ({
-        title: 'Dashboard',
+        title: 'Gráficos',
         headerStyle: headerStyle,
         headerTintColor: '#fff',
       }),
     },
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'Graficos',
   },
 );
 
-const RoutesMain = createAppContainer(mainNavigation);
+const RoutesGraficos = createAppContainer(mainNavigation);
 
-export default RoutesMain;
+export default RoutesGraficos;

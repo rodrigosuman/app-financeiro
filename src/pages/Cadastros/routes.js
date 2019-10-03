@@ -3,24 +3,24 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import {headerStyle} from '~/variables/headerStyle';
 
-import Main from '~/pages/Main';
+import Cadastros from '~/pages/Cadastros';
 
 const mainNavigation = createStackNavigator(
   {
-    Dashboard: {
-      screen: Main,
+    Cadastros: {
+      screen: Cadastros,
       navigationOptions: () => ({
-        title: 'Dashboard',
+        title: 'Cadastros',
         headerStyle: headerStyle,
         headerTintColor: '#fff',
       }),
     },
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'Cadastros',
   },
 );
 
-const RoutesMain = createAppContainer(mainNavigation);
+const RoutesCadastros = createAppContainer(mainNavigation);
 
-export default RoutesMain;
+export default RoutesCadastros;

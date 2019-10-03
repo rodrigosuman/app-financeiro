@@ -4,10 +4,9 @@ import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import RoutesMain from '~/pages/Main/routes';
-
-import Lancamentos from '~/pages/Lancamentos';
-import Graficos from '~/pages/Graficos';
-import Cadastros from '~/pages/Cadastros';
+import RoutesLancamentos from '~/pages/Lancamentos/routes';
+import RoutesGraficos from '~/pages/Graficos/routes';
+import RoutesCadastros from '~/pages/Cadastros/routes';
 
 let IconBar = (focused, icon) => {
   return <Icon name={icon} size={23} color={focused ? '#1abc9c' : '#aaa'} />;
@@ -24,7 +23,7 @@ const mainNavigation = createMaterialBottomTabNavigator(
       }),
     },
     Transações: {
-      screen: Lancamentos,
+      screen: RoutesLancamentos,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => {
           return IconBar(focused, 'view-list');
@@ -32,7 +31,7 @@ const mainNavigation = createMaterialBottomTabNavigator(
       }),
     },
     Gráficos: {
-      screen: Graficos,
+      screen: RoutesGraficos,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => {
           return IconBar(focused, 'pie-chart');
@@ -40,7 +39,7 @@ const mainNavigation = createMaterialBottomTabNavigator(
       }),
     },
     Cadastros: {
-      screen: Cadastros,
+      screen: RoutesCadastros,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => {
           return IconBar(focused, 'settings');

@@ -10,11 +10,12 @@ import {save, getObjects} from '~/services/realm';
 import Lancamento from '~/pages/Lancamento';
 import NovoLancamento from '~/pages/NovoLancamento';
 
-export default function Lancamentos() {
+export default function Lancamentos({navigation}) {
   const [input, setInput] = useState('');
   const [lancamentos, setLancamentos] = useState([]);
   const [receita, setReceita] = useState(false);
   const [modalLancamentoOpen, setOpenLancamento] = useState(false);
+  const {navigate} = navigation;
 
   useEffect(() => {
     getObjects('lancamentos', setLancamentos);
@@ -50,29 +51,20 @@ export default function Lancamentos() {
         <TextFeedback>Não há lancamentos.</TextFeedback>
       )}
 
-      <NovoLancamento
-        open={modalLancamentoOpen}
-        setModalVisible={setOpenLancamento}
-        receita={receita}
-      />
-
       <FloatingAction
         actions={actions}
         buttonSize={40}
         onPressItem={name => {
           switch (name) {
             case 'bt_receita':
-              setReceita(true);
-              setOpenLancamento(true);
+              navigate('NovoLancamento', {receita: true});
               break;
 
             case 'bt_despesa':
-              setReceita(false);
-              setOpenLancamento(true);
+              navigate('NovoLancamento', {receita: false});
               break;
 
             default:
-              setOpenLancamento(false);
               break;
           }
         }}
@@ -85,14 +77,14 @@ const actions = [
   {
     text: 'Receita',
     icon: <Icon color="#fff" name="line-chart" />,
-    color: '#2ECC71',
+    color: '#1abc9c',
     name: 'bt_receita',
     position: 1,
   },
   {
     text: 'Despesa',
     icon: <Icon color="#fff" name="level-down" />,
-    color: '#EE2E31',
+    color: '#FF431B',
     name: 'bt_despesa',
     position: 2,
   },

@@ -1,20 +1,32 @@
 import React, {useState, useEffect} from 'react';
-import {Modal} from 'react-native';
-import {Textarea} from 'native-base';
-import DatePicker from 'react-native-datepicker';
+import {View} from 'react-native';
+import {Textarea, DatePicker} from 'native-base';
+// import DatePicker from 'react-native-datepicker';
 import Moment from 'moment';
 
 import {getObjects, save} from '~/services/realm';
 
-import {Container, ViewContainer, Input, ButtonSubmit, Picker} from './styles';
+import {
+  Container,
+  ViewContainer,
+  Input,
+  Label,
+  Picker,
+  FormContainer,
+  ButtonSubmit,
+} from './styles';
 
-export default function NovoLancamento({open, setModalVisible, receita}) {
-  const [descricao, setDescricao] = useState('');
-  const [valor, setValor] = useState(0);
-  const [data, setData] = useState(Moment());
-  const [date, setDate] = useState(Moment());
-  const [observacoes, setObservacoes] = useState('');
+export default function NovoLancamento({navigation}) {
   const [tipos, setTipos] = useState([]);
+
+  const [valor, setValor] = useState(0);
+  const [descricao, setDescricao] = useState('');
+  const [data, setData] = useState(new Date());
+  const [categoria, setCategoria] = useState(1);
+  const [observacoes, setObservacoes] = useState('');
+  const {navigate} = navigation;
+
+  let receita = false;
 
   function formatDate(dateStr) {
     let array = dateStr.split('/');
@@ -27,74 +39,81 @@ export default function NovoLancamento({open, setModalVisible, receita}) {
   }, [receita]);
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={false}
-      visible={open}
-      onRequestClose={() => setModalVisible(!open)}>
-      <Container>
+    <Container>
+      <FormContainer>
         <ViewContainer>
+          <Label>Valor</Label>
           <Input
+            value={String(valor)}
             keyboardType="decimal-pad"
-            placeholder="valor"
             onChangeText={value => setValor(parseFloat(value))}
           />
         </ViewContainer>
+
         <ViewContainer>
-          <DatePicker
-            date={data}
-            style={{width: '100%'}}
-            format="DD/MM/YYYY"
-            confirmBtnText="Confirmar"
-            cancelBtnText="Cancelar"
-            onDateChange={date => {
-              setData(date);
-              setDate(formatDate(date));
-            }}
-            color="#fff"
+          <Label>Descrição</Label>
+          <Input
+            value={descricao}
+            onChangeText={value => setDescricao(value)}
           />
         </ViewContainer>
+
         <ViewContainer>
+          <Label>Data</Label>
+          <DatePicker
+            defaultDate={data}
+            locale={'br'}
+            modalTransparent={true}
+            animationType={'slide'}
+            androidMode={'spinner'}
+            placeHolderText=""
+            onDateChange={value => setData(value)}
+            disabled={false}
+          />
+        </ViewContainer>
+
+        <ViewContainer>
+          <Label>Categoria</Label>
           <Picker
-            selectedValue={descricao}
-            onValueChange={value => setDescricao(value)}>
-            <Picker.Item key={0} label="" value="" />
+            selectedValue={categoria}
+            onValueChange={value => setCategoria(value)}>
             {tipos.map((t, key) => {
-              return (
-                <Picker.Item
-                  key={key}
-                  label={t.descricao}
-                  value={t.descricao}
-                />
-              );
+              return <Picker.Item key={key} label={t.descricao} value={t.id} />;
             })}
           </Picker>
         </ViewContainer>
+
         <ViewContainer>
-          <Textarea
-            rowSpan={5}
-            onFocus={() => {}}
-            returnKeyType={'default'}
-            blurOnSubmit={false}
-            onChangeText={texto => setObservacoes(texto)}
-            placeholder="Observações"
-            style={{width: '100%', placeholderTextColor: '#666', color: '#fff'}}
-          />
+          <Label>Observações</Label>
+          <View>
+            <Textarea
+              value={observacoes}
+              rowSpan={3}
+              onFocus={() => {}}
+              returnKeyType={'default'}
+              blurOnSubmit={false}
+              onChangeText={texto => setObservacoes(texto)}
+              style={{
+                width: '100%',
+              }}
+            />
+          </View>
         </ViewContainer>
         <ButtonSubmit
           color="#22d278"
           title="Salvar"
           onPress={() => {
             save('lancamentos', {
-              descricao: descricao,
               valor: valor,
-              data: new Date(date),
+              descricao: descricao,
+              data: new Date(data),
+              tipo: categoria,
               observacoes: observacoes,
-              conciliado: false,
-            }).then(() => setModalVisible(false));
+              pago: false,
+            }).then(() => navigate('Lancamentos'));
           }}
         />
-      </Container>
-    </Modal>
+      </FormContainer>
+    </Container>
   );
 }

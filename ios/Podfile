@@ -35,6 +35,8 @@ target 'financas' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker'
+
   target 'financasTests' do
     inherit! :search_paths
     # Pods for testing

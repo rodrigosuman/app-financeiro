@@ -5,10 +5,10 @@ export const Lancamentos = {
     id: 'int',
     valor: 'float',
     descricao: 'string',
-    observacoes: 'string',
     data: 'date',
-    pago: 'bool',
     tipo: {type: 'tipos'},
+    observacoes: 'string',
+    pago: 'bool',
   },
 };
 

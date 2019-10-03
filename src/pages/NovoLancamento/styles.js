@@ -1,39 +1,41 @@
-import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
+import {StyleSheet} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #fff;
-  justify-content: center;
+  background-color: #eee;
   padding: 12px;
 `;
 
-export const ViewContainer = styled.View.attrs({
+export const FormContainer = styled.View.attrs({
   shadowColor: '#000',
-  shadowOffset: {
-    width: 0,
-    height: 1,
-  },
-  shadowOpacity: 0.22,
-  shadowRadius: 2.22,
-
-  elevation: 1,
+  shadowOffset: {width: 0, height: 1},
+  shadowOpacity: 0.8,
+  shadowRadius: 2,
+  elevation: 2,
 })`
-  flex-direction: column;
-  width: 100%;
+  background-color: #fff;
+  padding: 12px;
   border-radius: 5px;
-  color: #fff;
-  padding: 5px;
-  margin-bottom: 15px;
 `;
 
-export const Input = styled.TextInput.attrs({
-  placeholderTextColor: '#666',
-})`
+export const ViewContainer = styled.View`
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+  border-bottom-width: ${StyleSheet.hairlineWidth}px;
+  border-left-width: ${StyleSheet.hairlineWidth}px;
+  border-bottom-left-radius: 3px;
+`;
+
+export const Input = styled.TextInput`
   font-size: 16px;
-  margin-left: 10px;
   justify-content: flex-start;
-  color: #fff;
+`;
+
+export const Label = styled.Text`
+  font-size: 12px;
+  color: #666;
 `;
 
 export const Picker = styled.Picker`

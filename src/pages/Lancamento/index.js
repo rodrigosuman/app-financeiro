@@ -9,6 +9,8 @@ import {
 } from './styles';
 
 export default function Lancamento({data}) {
+  console.tron.log(data);
+
   return (
     <Container
       style={
