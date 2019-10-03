@@ -8,6 +8,7 @@ export const Lancamentos = {
     observacoes: 'string',
     data: 'date',
     pago: 'bool',
+    tipo: {type: 'tipos'},
   },
 };
 
@@ -17,5 +18,6 @@ export const TiposLancamentos = {
   properties: {
     id: 'int',
     descricao: 'string',
+    receita: 'bool',
   },
 };

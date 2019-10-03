@@ -4,14 +4,14 @@ import {Lancamentos, TiposLancamentos} from '~/schemas';
 export function getRealm() {
   return Realm.open({
     schema: [Lancamentos, TiposLancamentos],
-    schemaVersion: 7,
+    schemaVersion: 9,
   });
 }
 
 export async function save(schema, data) {
   getRealm()
     .then(realm => {
-      console.tron.log(data);
+      data.id = realm.objects(schema).length + 1;
       realm.write(() => {
         realm.create(schema, data);
       });
@@ -21,10 +21,15 @@ export async function save(schema, data) {
     });
 }
 
-export function getObjects(schema, callBack) {
+export function getObjects(schema, callBack, filtered = false, filter = '') {
   getRealm()
     .then(realm => {
       let objects = realm.objects(schema);
+
+      if (filtered === true) {
+        objects = objects.filtered(filter);
+      }
+
       callBack(objects);
     })
     .catch(error => {
