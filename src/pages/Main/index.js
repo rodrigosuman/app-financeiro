@@ -43,7 +43,12 @@ export default function Main() {
               paddingLeft: 5,
             }}>
             <DescricaoResumo>Receitas</DescricaoResumo>
-            <ValorResumo>R$ 5000,00</ValorResumo>
+            <ValorResumo
+              style={{
+                color: '#69BF8A',
+              }}>
+              R$ 5000,00
+            </ValorResumo>
           </ContainerDescricao>
 
           <ContainerDescricao
@@ -53,7 +58,12 @@ export default function Main() {
               paddingLeft: 5,
             }}>
             <DescricaoResumo>Despesas</DescricaoResumo>
-            <ValorResumo>R$ 0,00</ValorResumo>
+            <ValorResumo
+              style={{
+                color: '#EE2E31',
+              }}>
+              R$ 0,00
+            </ValorResumo>
           </ContainerDescricao>
 
           <ContainerDescricao
@@ -63,7 +73,12 @@ export default function Main() {
               paddingLeft: 5,
             }}>
             <DescricaoResumo>Saldo</DescricaoResumo>
-            <ValorResumo>R$ 5000,00</ValorResumo>
+            <ValorResumo
+              style={{
+                color: '#2695EE',
+              }}>
+              R$ 5000,00
+            </ValorResumo>
           </ContainerDescricao>
         </ViewResumo>
 
@@ -82,7 +97,12 @@ export default function Main() {
               paddingLeft: 5,
             }}>
             <DescricaoResumo>Receitas pendentes</DescricaoResumo>
-            <ValorResumo>R$ 5000,00</ValorResumo>
+            <ValorResumo
+              style={{
+                color: '#1ABC9C',
+              }}>
+              R$ 5000,00
+            </ValorResumo>
           </ContainerDescricao>
 
           <ContainerDescricao
@@ -92,7 +112,12 @@ export default function Main() {
               paddingLeft: 5,
             }}>
             <DescricaoResumo>Despesas pendentes</DescricaoResumo>
-            <ValorResumo>R$ 5000,00</ValorResumo>
+            <ValorResumo
+              style={{
+                color: '#FB6107',
+              }}>
+              R$ 5000,00
+            </ValorResumo>
           </ContainerDescricao>
         </ViewResumo>
       </ScrollView>

@@ -1,16 +1,15 @@
 import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Main from '~/pages/Main';
 
 const mainNavigation = createStackNavigator(
   {
-    Home: {
+    Dashboard: {
       screen: Main,
       navigationOptions: () => ({
-        title: 'Home',
+        title: 'Dashboard',
         headerStyle: {
           backgroundColor: '#1abc9c',
         },
@@ -19,7 +18,7 @@ const mainNavigation = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Dashboard',
   },
 );
 

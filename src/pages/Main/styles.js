@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #fff;
+  background-color: #eee;
   align-items: center;
   margin-top: 12px;
   padding: 12px;
@@ -56,4 +56,7 @@ export const ValorResumo = styled.Text`
 
 export const ViewHeader = styled.View`
   margin-bottom: 10px;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 `;

@@ -1,18 +1,8 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View.attrs({
-  shadowColor: '#BF00FF',
-  shadowOffset: {
-    width: 0,
-    height: 2,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
-
-  elevation: 4,
-})`
+export const Container = styled.View`
   width: 100%;
-  background-color: #fff;
+  background-color: #eee;
   border-left-width: 4px;
   margin-bottom: 12px;
   flex-direction: column;
