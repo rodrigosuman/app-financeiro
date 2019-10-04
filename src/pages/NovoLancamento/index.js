@@ -28,15 +28,9 @@ export default function NovoLancamento({navigation}) {
   const [observacoes, setObservacoes] = useState('');
   const [pago, setPago] = useState(false);
 
-  const {navigate} = navigation;
+  const {navigate, state} = navigation;
 
-  let receita = false;
-
-  function formatDate(dateStr) {
-    let array = dateStr.split('/');
-
-    return array[2] + '-' + array[1] + '-' + array[0];
-  }
+  let receita = state.params.receita;
 
   useEffect(() => {
     getObjects('tipos', setTipos, true, `receita = ${receita}`);
@@ -48,7 +42,6 @@ export default function NovoLancamento({navigation}) {
         <ViewContainer>
           <Label>Valor</Label>
           <Input
-            value={String(valor)}
             keyboardType="decimal-pad"
             onChangeText={value => setValor(parseFloat(value))}
           />

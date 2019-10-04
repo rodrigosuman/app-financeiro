@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
+import {RefreshControl} from 'react-native';
 import {FloatingAction} from 'react-native-floating-action';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -10,20 +11,33 @@ import {save, getObjects, deleteAll} from '~/services/realm';
 import Lancamento from '~/pages/Lancamento';
 
 export default function Lancamentos({navigation}) {
+  const [fetching, setfetching] = useState(false);
+
   const [input, setInput] = useState('');
   const [lancamentos, setLancamentos] = useState([]);
   const {navigate} = navigation;
 
   useEffect(() => {
-    // deleteAll();
-    getObjects('lancamentos', setLancamentos);
+    fetchingList();
   }, []);
+
+  function fetchingList() {
+    getObjects('lancamentos', setLancamentos, false, '', true, 'data', true);
+  }
 
   return (
     <Container>
       {lancamentos.length ? (
         <>
           <List
+            onEndReachedThreshold={0.3}
+            onEndReached={() => fetchingList}
+            refreshControl={
+              <RefreshControl
+                refreshing={fetching}
+                onRefresh={() => fetchingList}
+              />
+            }
             keyboardShouldPersistTaps="handle"
             data={lancamentos}
             keyExtractor={item => String(item.id)}

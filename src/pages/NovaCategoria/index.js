@@ -45,7 +45,7 @@ export default function NovaCategoria({navigation}) {
             save('tipos', {
               descricao: descricao,
               receita: receita,
-            }).then(() => navigate('Cadastros'));
+            }).then(() => navigate('Cadastros', {atualiza: true}));
           }}
         />
       </FormContainer>

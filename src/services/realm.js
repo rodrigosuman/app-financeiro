@@ -36,13 +36,28 @@ export async function save(schema, data) {
     });
 }
 
-export function getObjects(schema, callBack, filtered = false, filter = '') {
+export function getObjects(
+  schema,
+  callBack,
+  filtered = false,
+  filter = '',
+  sorted = false,
+  sortedField = '',
+  order = true,
+) {
   getRealm()
     .then(realm => {
       let objects = realm.objects(schema);
 
       if (filtered === true) {
         objects = objects.filtered(filter);
+      }
+
+      console.tron.log(sorted);
+      console.tron.log(sortedField);
+
+      if (sorted === true) {
+        objects = objects.sorted(sortedField, order);
       }
 
       callBack(objects);

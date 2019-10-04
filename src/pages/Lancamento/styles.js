@@ -4,7 +4,7 @@ export const Container = styled.View`
   width: 100%;
   background-color: #fff;
   border-left-width: 4px;
-  margin-top: 10px;
+  margin-bottom: 17px;
   flex-direction: column;
   border-radius: 5px;
   padding: 10px;
@@ -20,8 +20,15 @@ export const RegistryTitle = styled.Text`
   color: #777;
 `;
 
+export const RegistryDescription = styled.Text`
+  align-items: center;
+  font-size: 12px;
+  color: #bbb;
+`;
+
 export const RegistryDate = styled.Text`
-  color: #444;
+  color: #bbb;
+  font-size: 12px;
 `;
 
 export const RegistryValue = styled.Text`

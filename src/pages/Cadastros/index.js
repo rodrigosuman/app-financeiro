@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {RefreshControl} from 'react-native';
 
 import {getObjects} from '~/services/realm';
 
@@ -16,9 +17,9 @@ import Categoria from '~/pages/Categoria';
 export default function Lancamentos({navigation}) {
   const {navigate} = navigation;
   const [tipos, setTipos] = useState([]);
+  const [fetching, setfetching] = useState(false);
 
   useEffect(() => {
-    // deleteAll();
     getObjects('tipos', setTipos);
   }, []);
 
@@ -36,6 +37,14 @@ export default function Lancamentos({navigation}) {
         </SectionHeader>
 
         <SectionContent
+          onEndReachedThreshold={0.3}
+          onEndReached={() => getObjects('tipos', setTipos)}
+          refreshControl={
+            <RefreshControl
+              refreshing={fetching}
+              onRefresh={() => getObjects('tipos', setTipos)}
+            />
+          }
           keyboardShouldPersistTaps="handle"
           data={tipos}
           keyExtractor={item => String(item.id)}
