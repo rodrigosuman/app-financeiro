@@ -16,7 +16,7 @@ export const Section = styled.View.attrs([boxShadow])`
   border-radius: 5px;
   margin-top: 10px;
   max-height: 350px;
-  border-top-width: 5px;
+  border-top-width: 7px;
 `;
 
 export const SectionHeader = styled.View`

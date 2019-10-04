@@ -72,10 +72,10 @@ export function deleteAll() {
     .then(realm => {
       realm.write(() => {
         let lancamentos = realm.objects('lancamentos');
-        let tipos = realm.objects('tipos');
+        // let tipos = realm.objects('tipos');
 
         realm.delete(lancamentos);
-        realm.delete(tipos);
+        // realm.delete(tipos);
       });
     })
     .catch(err => {

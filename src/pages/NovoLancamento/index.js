@@ -24,7 +24,9 @@ export default function NovoLancamento({navigation}) {
   const [descricao, setDescricao] = useState('');
   const [data, setData] = useState(new Date());
   const [categoria, setCategoria] = useState(1);
-  const [categoriaObj, setCategoriaObj] = useState(null);
+  const [categoriaObj, setCategoriaObj] = useState(
+    getObject(categoria, setCategoriaObj),
+  );
   const [observacoes, setObservacoes] = useState('');
   const [pago, setPago] = useState(false);
 

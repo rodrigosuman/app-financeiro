@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
+import {boxShadow} from '~/variables/boxShadow';
 
-export const Container = styled.View`
+export const Container = styled.View.attrs([boxShadow])`
   width: 100%;
   background-color: #fff;
   border-left-width: 4px;

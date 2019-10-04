@@ -11,7 +11,27 @@ import {
   RegistryDescription,
 } from './styles';
 
+function IconCategoria({receita}) {
+  let icon = <></>;
+
+  if (receita) {
+    icon = <Icon name="arrow-upward" color="#0DAB76" size={12} />;
+  } else {
+    icon = <Icon name="arrow-downward" color="#FF3C38" size={12} />;
+  }
+
+  return icon;
+}
+
+function CategoriaDescricao({descricao}) {
+  return <>{descricao}, </>;
+}
+
 export default function Lancamento({data}) {
+  const {tipo} = data;
+
+  console.tron.log(tipo);
+
   return (
     <Container
       style={
@@ -25,12 +45,14 @@ export default function Lancamento({data}) {
       </Header>
 
       <RegistryDescription>
-        {data.tipo.receita === true ? (
-          <Icon name="arrow-upward" color="#0DAB76" size={12} />
+        {tipo ? (
+          <>
+            <IconCategoria receita={tipo.receita} />
+            <CategoriaDescricao descricao={tipo.descricao} />
+          </>
         ) : (
-          <Icon name="arrow-downward" color="#FF3C38" size={12} />
+          <></>
         )}
-        {data.tipo.descricao},{' '}
         <RegistryDate>{moment(data.data).format('DD/MM/YYYY')}</RegistryDate>
       </RegistryDescription>
     </Container>

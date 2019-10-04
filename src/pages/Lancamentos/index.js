@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 import {RefreshControl} from 'react-native';
 import {FloatingAction} from 'react-native-floating-action';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Container, List, TextFeedback} from './styles';
 
@@ -18,6 +18,7 @@ export default function Lancamentos({navigation}) {
   const {navigate} = navigation;
 
   useEffect(() => {
+    deleteAll();
     fetchingList();
   }, []);
 
@@ -31,11 +32,11 @@ export default function Lancamentos({navigation}) {
         <>
           <List
             onEndReachedThreshold={0.3}
-            onEndReached={() => fetchingList}
+            onEndReached={() => fetchingList()}
             refreshControl={
               <RefreshControl
                 refreshing={fetching}
-                onRefresh={() => fetchingList}
+                onRefresh={() => fetchingList()}
               />
             }
             keyboardShouldPersistTaps="handle"
@@ -50,7 +51,7 @@ export default function Lancamentos({navigation}) {
 
       <FloatingAction
         actions={actions}
-        buttonSize={40}
+        color="#F7385E"
         onPressItem={name => {
           switch (name) {
             case 'bt_receita':
@@ -73,16 +74,16 @@ export default function Lancamentos({navigation}) {
 const actions = [
   {
     text: 'Receita',
-    icon: <Icon color="#fff" name="line-chart" />,
-    color: '#1abc9c',
+    icon: <Icon color="#fff" name="arrow-upward" />,
+    color: '#00FFFF',
     name: 'bt_receita',
-    position: 1,
+    position: 2,
   },
   {
     text: 'Despesa',
-    icon: <Icon color="#fff" name="level-down" />,
-    color: '#FF431B',
+    icon: <Icon color="#fff" name="arrow-downward" />,
+    color: '#FFB800',
     name: 'bt_despesa',
-    position: 2,
+    position: 1,
   },
 ];
