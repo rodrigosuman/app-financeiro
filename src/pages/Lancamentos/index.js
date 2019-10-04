@@ -6,19 +6,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Container, List, TextFeedback} from './styles';
 
-import {save, getObjects, deleteAll} from '~/services/realm';
+import {getObjects, deleteAll} from '~/services/realm';
 
 import Lancamento from '~/pages/Lancamento';
 
 export default function Lancamentos({navigation}) {
   const [fetching, setfetching] = useState(false);
-
-  const [input, setInput] = useState('');
   const [lancamentos, setLancamentos] = useState([]);
   const {navigate} = navigation;
 
   useEffect(() => {
-    deleteAll();
     fetchingList();
   }, []);
 
@@ -28,26 +25,20 @@ export default function Lancamentos({navigation}) {
 
   return (
     <Container>
-      {lancamentos.length ? (
-        <>
-          <List
-            onEndReachedThreshold={0.3}
-            onEndReached={() => fetchingList()}
-            refreshControl={
-              <RefreshControl
-                refreshing={fetching}
-                onRefresh={() => fetchingList()}
-              />
-            }
-            keyboardShouldPersistTaps="handle"
-            data={lancamentos}
-            keyExtractor={item => String(item.id)}
-            renderItem={({item}) => <Lancamento key={item.id} data={item} />}
+      <List
+        onEndReachedThreshold={0.3}
+        onEndReached={() => fetchingList()}
+        refreshControl={
+          <RefreshControl
+            refreshing={fetching}
+            onRefresh={() => fetchingList()}
           />
-        </>
-      ) : (
-        <TextFeedback>Não há lancamentos.</TextFeedback>
-      )}
+        }
+        keyboardShouldPersistTaps="handle"
+        data={lancamentos}
+        keyExtractor={item => String(item.id)}
+        renderItem={({item}) => <Lancamento key={item.id} data={item} />}
+      />
 
       <FloatingAction
         actions={actions}
@@ -74,14 +65,14 @@ export default function Lancamentos({navigation}) {
 const actions = [
   {
     text: 'Receita',
-    icon: <Icon color="#fff" name="arrow-upward" />,
+    icon: <Icon color="#fff" name="arrow-upward" size={22} />,
     color: '#00FFFF',
     name: 'bt_receita',
     position: 2,
   },
   {
     text: 'Despesa',
-    icon: <Icon color="#fff" name="arrow-downward" />,
+    icon: <Icon color="#fff" name="arrow-downward" size={22} />,
     color: '#FFB800',
     name: 'bt_despesa',
     position: 1,

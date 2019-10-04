@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import {FloatingAction} from 'react-native-floating-action';
 import {RefreshControl} from 'react-native';
 
 import {getObjects} from '~/services/realm';
@@ -24,33 +26,60 @@ export default function Lancamentos({navigation}) {
   }, []);
 
   return (
-    <Container>
-      <Section style={{borderTopColor: '#FBB02D'}}>
-        <SectionHeader>
-          <SectionDescription>Categorias</SectionDescription>
-          <Icon
+    <>
+      <Container>
+        <Section style={{borderTopColor: '#FBB02D'}}>
+          <SectionHeader>
+            <SectionDescription>Categorias</SectionDescription>
+            {/* <Icon
             name="playlist-add"
             size={30}
             color="#1abc9c"
             onPress={() => navigate('NovaCategoria')}
-          />
-        </SectionHeader>
+          /> */}
+          </SectionHeader>
 
-        <SectionContent
-          onEndReachedThreshold={0.3}
-          onEndReached={() => getObjects('tipos', setTipos)}
-          refreshControl={
-            <RefreshControl
-              refreshing={fetching}
-              onRefresh={() => getObjects('tipos', setTipos)}
-            />
+          <SectionContent
+            onEndReachedThreshold={0.3}
+            onEndReached={() => getObjects('tipos', setTipos)}
+            refreshControl={
+              <RefreshControl
+                refreshing={fetching}
+                onRefresh={() => getObjects('tipos', setTipos)}
+              />
+            }
+            keyboardShouldPersistTaps="handle"
+            data={tipos}
+            keyExtractor={item => String(item.id)}
+            renderItem={({item}) => <Categoria key={item.id} data={item} />}
+          />
+        </Section>
+      </Container>
+
+      <FloatingAction
+        actions={actions}
+        color="#F7385E"
+        onPressItem={name => {
+          switch (name) {
+            case 'bt_categoria':
+              navigate('NovaCategoria');
+              break;
+
+            default:
+              break;
           }
-          keyboardShouldPersistTaps="handle"
-          data={tipos}
-          keyExtractor={item => String(item.id)}
-          renderItem={({item}) => <Categoria key={item.id} data={item} />}
-        />
-      </Section>
-    </Container>
+        }}
+      />
+    </>
   );
 }
+
+const actions = [
+  {
+    text: 'Categoria',
+    icon: <Icon color="#fff" name="playlist-add" size={22} />,
+    color: '#00FFFF',
+    name: 'bt_categoria',
+    position: 1,
+  },
+];

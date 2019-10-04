@@ -5,7 +5,7 @@ export const Container = styled.View.attrs([boxShadow])`
   width: 100%;
   background-color: #fff;
   border-left-width: 4px;
-  margin-bottom: 17px;
+  margin-bottom: 12px;
   flex-direction: column;
   border-radius: 5px;
   padding: 10px;
@@ -17,7 +17,7 @@ export const Header = styled.View`
 `;
 
 export const RegistryTitle = styled.Text`
-  font-size: 18px;
+  font-size: 15px;
   color: #777;
 `;
 
@@ -33,6 +33,6 @@ export const RegistryDate = styled.Text`
 `;
 
 export const RegistryValue = styled.Text`
-  font-size: 20px;
+  font-size: 17px;
   color: #5c6672;
 `;
