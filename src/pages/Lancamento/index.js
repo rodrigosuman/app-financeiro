@@ -9,8 +9,6 @@ import {
 } from './styles';
 
 export default function Lancamento({data}) {
-  console.tron.log(data);
-
   return (
     <Container
       style={
@@ -19,7 +17,7 @@ export default function Lancamento({data}) {
           : {borderLeftColor: '#EF335E'}
       }>
       <Header>
-        <RegistryTitle>{data.descricao}</RegistryTitle>
+        <RegistryTitle>{data.tipo.descricao}</RegistryTitle>
         <RegistryValue>R$ {data.valor.toFixed(2)}</RegistryValue>
       </Header>
       <RegistryDate>{moment(data.data).format('DD/MM/YYYY')}</RegistryDate>

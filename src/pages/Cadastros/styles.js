@@ -1,9 +1,39 @@
 import styled from 'styled-components/native';
+import {StyleSheet} from 'react-native';
 
-export const Container = styled.View`
+import {boxShadow} from '~/variables/boxShadow';
+
+export const Container = styled.ScrollView`
   flex: 1;
   background-color: #eee;
-  align-content: center;
+  flex-direction: column;
+  padding: 12px;
+`;
+
+export const Section = styled.View.attrs([boxShadow])`
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 5px;
+  margin-top: 10px;
+  max-height: 350px;
+  border-top-width: 5px;
+`;
+
+export const SectionHeader = styled.View`
+  border-bottom-width: ${StyleSheet.hairlineWidth}px;
+  padding-bottom: 12px;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+`;
+
+export const SectionDescription = styled.Text`
+  font-size: 20px;
+  color: #666;
+`;
+
+export const SectionContent = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: true,
+})`
+  margin-top: 20px;
 `;

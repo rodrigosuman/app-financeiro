@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
+import {CheckBox} from 'react-native-elements';
 import {Textarea, DatePicker} from 'native-base';
 // import DatePicker from 'react-native-datepicker';
 import Moment from 'moment';
 
-import {getObjects, save} from '~/services/realm';
+import {getObjects, save, getObject} from '~/services/realm';
 
 import {
   Container,
@@ -23,7 +24,10 @@ export default function NovoLancamento({navigation}) {
   const [descricao, setDescricao] = useState('');
   const [data, setData] = useState(new Date());
   const [categoria, setCategoria] = useState(1);
+  const [categoriaObj, setCategoriaObj] = useState(null);
   const [observacoes, setObservacoes] = useState('');
+  const [pago, setPago] = useState(false);
+
   const {navigate} = navigation;
 
   let receita = false;
@@ -76,11 +80,22 @@ export default function NovoLancamento({navigation}) {
           <Label>Categoria</Label>
           <Picker
             selectedValue={categoria}
-            onValueChange={value => setCategoria(value)}>
+            onValueChange={value => {
+              setCategoria(value);
+              setCategoriaObj(getObject('tipos', value, setCategoriaObj));
+            }}>
             {tipos.map((t, key) => {
               return <Picker.Item key={key} label={t.descricao} value={t.id} />;
             })}
           </Picker>
+        </ViewContainer>
+
+        <ViewContainer>
+          <CheckBox
+            title="Pago"
+            checked={pago}
+            onPress={() => setPago(!pago)}
+          />
         </ViewContainer>
 
         <ViewContainer>
@@ -93,12 +108,11 @@ export default function NovoLancamento({navigation}) {
               returnKeyType={'default'}
               blurOnSubmit={false}
               onChangeText={texto => setObservacoes(texto)}
-              style={{
-                width: '100%',
-              }}
+              style={{width: '100%'}}
             />
           </View>
         </ViewContainer>
+
         <ButtonSubmit
           color="#22d278"
           title="Salvar"
@@ -107,9 +121,9 @@ export default function NovoLancamento({navigation}) {
               valor: valor,
               descricao: descricao,
               data: new Date(data),
-              tipo: categoria,
+              tipo: categoriaObj,
               observacoes: observacoes,
-              pago: false,
+              pago: pago,
             }).then(() => navigate('Lancamentos'));
           }}
         />

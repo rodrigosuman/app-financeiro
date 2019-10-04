@@ -8,7 +8,22 @@ export function getRealm() {
   });
 }
 
+export function getObject(schema, id, callBack) {
+  getRealm()
+    .then(realm => {
+      let objects = realm.objects(schema);
+      let object = objects.filtered(`id = ${id}`);
+
+      callBack(object[0]);
+    })
+    .catch(error => {
+      console.tron.warn(error);
+    });
+}
+
 export async function save(schema, data) {
+  console.tron.log(data);
+
   getRealm()
     .then(realm => {
       data.id = realm.objects(schema).length + 1;

@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {boxShadow} from '~/variables/boxShadow';
 
 export const Container = styled.View`
   flex: 1;
@@ -14,14 +15,10 @@ export const ContainerDescricao = styled.View`
   margin-bottom: 10px;
 `;
 
-export const ViewResumo = styled.View.attrs({
-  shadowColor: '#000',
-  shadowOffset: {width: 0, height: 1},
-  shadowOpacity: 0.8,
-  shadowRadius: 2,
-  elevation: 2,
-})`
+export const ViewResumo = styled.View.attrs([boxShadow])`
   width: 100%;
+  margin-top: 15px;
+  margin-bottom: 5px;
   background-color: #fff;
   padding-bottom: 5px;
   padding-left: 10px;
@@ -29,7 +26,6 @@ export const ViewResumo = styled.View.attrs({
   padding-top: 10px;
   border-radius: 6px;
   border-top-width: 7px;
-  margin-bottom: 20px;
 `;
 
 export const DescricaoResumo = styled.Text`

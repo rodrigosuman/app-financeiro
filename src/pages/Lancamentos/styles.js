@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
+import {boxShadow} from '~/variables/boxShadow';
 
 export const Container = styled.View`
   flex: 1;
@@ -8,17 +9,7 @@ export const Container = styled.View`
   padding: 12px;
 `;
 
-export const ViewSearch = styled.View.attrs({
-  shadowColor: '#fff',
-  shadowOffset: {
-    width: 0,
-    height: 2,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
-
-  elevation: 3,
-})`
+export const ViewSearch = styled.View.attrs([boxShadow])`
   flex-direction: column;
   width: 100%;
   border-radius: 5px;

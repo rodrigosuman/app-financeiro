@@ -3,21 +3,19 @@ import React, {useState, useEffect} from 'react';
 import {FloatingAction} from 'react-native-floating-action';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Container, ViewSearch, SearchInput, List, TextFeedback} from './styles';
+import {Container, List, TextFeedback} from './styles';
 
-import {save, getObjects} from '~/services/realm';
+import {save, getObjects, deleteAll} from '~/services/realm';
 
 import Lancamento from '~/pages/Lancamento';
-import NovoLancamento from '~/pages/NovoLancamento';
 
 export default function Lancamentos({navigation}) {
   const [input, setInput] = useState('');
   const [lancamentos, setLancamentos] = useState([]);
-  const [receita, setReceita] = useState(false);
-  const [modalLancamentoOpen, setOpenLancamento] = useState(false);
   const {navigate} = navigation;
 
   useEffect(() => {
+    // deleteAll();
     getObjects('lancamentos', setLancamentos);
   }, []);
 
@@ -25,21 +23,6 @@ export default function Lancamentos({navigation}) {
     <Container>
       {lancamentos.length ? (
         <>
-          <ViewSearch>
-            <SearchInput
-              placeholder="Buscar lançamento..."
-              onChangeText={txt => setInput(txt)}
-              onBlur={() => {
-                save('lancamentos', {
-                  descricao: input,
-                  observacoes: 'teste obs',
-                  valor: 1000.0,
-                  data: Date('2019-01-01'),
-                  conciliado: false,
-                });
-              }}
-            />
-          </ViewSearch>
           <List
             keyboardShouldPersistTaps="handle"
             data={lancamentos}

@@ -48,7 +48,7 @@ const mainNavigation = createMaterialBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'Cadastros',
     activeColor: '#666',
     barStyle: {
       backgroundColor: '#fff',
