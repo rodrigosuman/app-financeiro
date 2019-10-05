@@ -37,7 +37,9 @@ export default function Lancamentos({navigation}) {
         keyboardShouldPersistTaps="handle"
         data={lancamentos}
         keyExtractor={item => String(item.id)}
-        renderItem={({item}) => <Lancamento key={item.id} data={item} />}
+        renderItem={({item}) => (
+          <Lancamento key={item.id} data={item} callBack={fetchingList} />
+        )}
       />
 
       <FloatingAction
@@ -46,11 +48,17 @@ export default function Lancamentos({navigation}) {
         onPressItem={name => {
           switch (name) {
             case 'bt_receita':
-              navigate('NovoLancamento', {receita: true});
+              navigate('NovoLancamento', {
+                receita: true,
+                callBack: fetchingList,
+              });
               break;
 
             case 'bt_despesa':
-              navigate('NovoLancamento', {receita: false});
+              navigate('NovoLancamento', {
+                receita: false,
+                callBack: fetchingList,
+              });
               break;
 
             default:

@@ -1,19 +1,38 @@
 import styled from 'styled-components/native';
+import {Animated} from 'react-native';
+
 import {boxShadow} from '~/variables/boxShadow';
 
-export const Container = styled.View.attrs([boxShadow])`
-  width: 100%;
+export const Container = styled(Animated.View).attrs([boxShadow])`
   background-color: #fff;
-  border-left-width: 4px;
   margin-bottom: 12px;
   flex-direction: column;
   border-radius: 5px;
   padding: 10px;
+  width: 100%;
+  left: 0;
 `;
+
+export const Content = styled.View``;
 
 export const Header = styled.View`
   justify-content: space-between;
   flex-direction: row;
+`;
+
+export const Footer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const Tags = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Tag = styled.View`
+  align-items: center;
 `;
 
 export const RegistryTitle = styled.Text`

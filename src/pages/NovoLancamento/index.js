@@ -32,7 +32,7 @@ export default function NovoLancamento({navigation}) {
 
   const {navigate, state} = navigation;
 
-  let receita = state.params.receita;
+  const {receita, callBack} = state.params;
 
   useEffect(() => {
     getObjects('tipos', setTipos, true, `receita = ${receita}`);
@@ -112,14 +112,18 @@ export default function NovoLancamento({navigation}) {
           color="#22d278"
           title="Salvar"
           onPress={() => {
-            save('lancamentos', {
-              valor: valor,
-              descricao: descricao,
-              data: new Date(data),
-              tipo: categoriaObj,
-              observacoes: observacoes,
-              pago: pago,
-            }).then(() => navigate('Lancamentos'));
+            save(
+              'lancamentos',
+              {
+                valor: valor,
+                descricao: descricao,
+                data: new Date(data),
+                tipo: categoriaObj,
+                observacoes: observacoes,
+                pago: pago,
+              },
+              callBack,
+            ).then(() => navigate('Lancamentos'));
           }}
         />
       </FormContainer>

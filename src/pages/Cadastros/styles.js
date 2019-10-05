@@ -21,6 +21,7 @@ export const Section = styled.View.attrs([boxShadow])`
 
 export const SectionHeader = styled.View`
   border-bottom-width: ${StyleSheet.hairlineWidth}px;
+  border-bottom-color: rgba(255, 255, 255, 0.8);
   padding-bottom: 12px;
   flex-direction: row;
   justify-content: space-between;
@@ -29,7 +30,7 @@ export const SectionHeader = styled.View`
 
 export const SectionDescription = styled.Text`
   font-size: 20px;
-  color: #666;
+  color: #aaa;
 `;
 
 export const SectionContent = styled.FlatList.attrs({

@@ -21,14 +21,13 @@ export function getObject(schema, id, callBack) {
     });
 }
 
-export async function save(schema, data) {
-  console.tron.log(data);
-
+export async function save(schema, data, callBack) {
   getRealm()
     .then(realm => {
       data.id = realm.objects(schema).length + 1;
       realm.write(() => {
         realm.create(schema, data);
+        callBack();
       });
     })
     .catch(error => {
@@ -83,4 +82,19 @@ export function deleteAll() {
     });
 }
 
+export function deleteObject(schema, id, callBack) {
+  getRealm()
+    .then(realm => {
+      realm.write(() => {
+        let objects = realm.objects(schema);
+        let object = objects.filtered(`id = ${id}`);
+        realm.delete(object);
+
+        callBack();
+      });
+    })
+    .catch(err => {
+      alert(err);
+    });
+}
 // export {getRealm, getObjects, save};
