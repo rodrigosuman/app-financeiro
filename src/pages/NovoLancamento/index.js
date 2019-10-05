@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {CheckBox} from 'react-native-elements';
 import {Textarea, DatePicker} from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Moment from 'moment';
+import NumericInput from '@wwdrew/react-native-numeric-textinput';
 
 import {getObjects, save, getObject, update} from '~/services/realm';
 
@@ -76,10 +76,13 @@ export default function NovoLancamento({navigation}) {
 
         <ViewContainer>
           <Label>Valor</Label>
-          <Input
-            value={String(valor)}
-            keyboardType="decimal-pad"
-            onChangeText={value => setValor(parseFloat(value))}
+
+          <NumericInput
+            type="decimal"
+            useGrouping={false}
+            decimalPlaces={2}
+            value={valor}
+            onUpdate={value => setValor(value)}
           />
         </ViewContainer>
 

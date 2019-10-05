@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^2.1.0",
+    "@wwdrew/react-native-numeric-textinput": "^1.1.0",
     "axios": "^0.19.0",
     "moment": "^2.24.0",
     "native-base": "^2.13.8",
