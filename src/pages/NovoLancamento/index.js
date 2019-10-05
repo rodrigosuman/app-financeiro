@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {CheckBox} from 'react-native-elements';
 import {Textarea, DatePicker} from 'native-base';
-// import DatePicker from 'react-native-datepicker';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Moment from 'moment';
 
-import {getObjects, save, getObject} from '~/services/realm';
+import {getObjects, save, getObject, update} from '~/services/realm';
 
 import {
   Container,
@@ -15,24 +15,26 @@ import {
   Picker,
   FormContainer,
   ButtonSubmit,
+  FormHeader,
+  FormHeaderText,
 } from './styles';
 
 export default function NovoLancamento({navigation}) {
+  const {navigate, state} = navigation;
+  const {receita, callBack, insert, lancamento} = state.params;
+
   const [tipos, setTipos] = useState([]);
 
-  const [valor, setValor] = useState(0);
-  const [descricao, setDescricao] = useState('');
-  const [data, setData] = useState(new Date());
-  const [categoria, setCategoria] = useState(1);
+  const {id} = lancamento;
+  const [valor, setValor] = useState(lancamento.valor);
+  const [descricao, setDescricao] = useState(lancamento.descricao);
+  const [data, setData] = useState(lancamento.data);
+  const [categoria, setCategoria] = useState(lancamento.tipo.id);
   const [categoriaObj, setCategoriaObj] = useState(
     getObject(categoria, setCategoriaObj),
   );
-  const [observacoes, setObservacoes] = useState('');
-  const [pago, setPago] = useState(false);
-
-  const {navigate, state} = navigation;
-
-  const {receita, callBack} = state.params;
+  const [observacoes, setObservacoes] = useState(lancamento.observacoes);
+  const [pago, setPago] = useState(lancamento.pago);
 
   useEffect(() => {
     getObjects('tipos', setTipos, true, `receita = ${receita}`);
@@ -40,10 +42,42 @@ export default function NovoLancamento({navigation}) {
 
   return (
     <Container>
-      <FormContainer>
+      <FormContainer
+        style={[
+          insert
+            ? receita
+              ? {borderTopColor: '#00FFFF'}
+              : {borderTopColor: '#FFB800'}
+            : {borderTopColor: '#2BD9FE'},
+          {
+            borderTopWidth: 9,
+          },
+        ]}>
+        <FormHeader>
+          {insert ? (
+            receita ? (
+              <>
+                <FormHeaderText>Nova receita</FormHeaderText>
+                <Icon name="arrow-upward" color="#00FFFF" size={27} />
+              </>
+            ) : (
+              <>
+                <FormHeaderText>Nova despesa</FormHeaderText>
+                <Icon name="arrow-downward" color="#FFB800" size={27} />
+              </>
+            )
+          ) : (
+            <>
+              <FormHeaderText>Editar lançamento</FormHeaderText>
+              <Icon name="edit" color="#2BD9FE" size={27} />
+            </>
+          )}
+        </FormHeader>
+
         <ViewContainer>
           <Label>Valor</Label>
           <Input
+            value={String(valor)}
             keyboardType="decimal-pad"
             onChangeText={value => setValor(parseFloat(value))}
           />
@@ -112,18 +146,34 @@ export default function NovoLancamento({navigation}) {
           color="#22d278"
           title="Salvar"
           onPress={() => {
-            save(
-              'lancamentos',
-              {
-                valor: valor,
-                descricao: descricao,
-                data: new Date(data),
-                tipo: categoriaObj,
-                observacoes: observacoes,
-                pago: pago,
-              },
-              callBack,
-            ).then(() => navigate('Lancamentos'));
+            if (insert) {
+              save(
+                'lancamentos',
+                {
+                  valor: valor,
+                  descricao: descricao,
+                  data: new Date(data),
+                  tipo: categoriaObj,
+                  observacoes: observacoes,
+                  pago: pago,
+                },
+                callBack,
+              ).then(() => navigate('Lancamentos'));
+            } else {
+              update(
+                'lancamentos',
+                {
+                  id: id,
+                  valor: valor,
+                  descricao: descricao,
+                  data: new Date(data),
+                  tipo: categoriaObj,
+                  observacoes: observacoes,
+                  pago: pago,
+                },
+                callBack,
+              ).then(() => navigate('Lancamentos'));
+            }
           }}
         />
       </FormContainer>

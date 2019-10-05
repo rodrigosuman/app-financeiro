@@ -32,7 +32,7 @@ export default function Categoria({data}) {
         <RegistryTitle>{data.descricao}</RegistryTitle>
 
         <Actions>
-          <Icon size={22} name="edit" color="#5F85BA" />
+          <Icon size={22} name="edit" color="#2BD9FE" />
         </Actions>
       </Header>
       <RegistryDescription style={{color: color}}>{text}</RegistryDescription>

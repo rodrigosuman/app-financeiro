@@ -15,6 +15,18 @@ export default function Lancamentos({navigation}) {
   const [lancamentos, setLancamentos] = useState([]);
   const {navigate} = navigation;
 
+  const lancamento = {
+    id: null,
+    valor: 0,
+    descricao: '',
+    data: new Date(),
+    tipo: {
+      id: 1,
+    },
+    observacoes: '',
+    pago: false,
+  };
+
   useEffect(() => {
     fetchingList();
   }, []);
@@ -38,7 +50,12 @@ export default function Lancamentos({navigation}) {
         data={lancamentos}
         keyExtractor={item => String(item.id)}
         renderItem={({item}) => (
-          <Lancamento key={item.id} data={item} callBack={fetchingList} />
+          <Lancamento
+            key={item.id}
+            data={item}
+            callBack={fetchingList}
+            navigation={navigation}
+          />
         )}
       />
 
@@ -51,6 +68,8 @@ export default function Lancamentos({navigation}) {
               navigate('NovoLancamento', {
                 receita: true,
                 callBack: fetchingList,
+                insert: true,
+                lancamento: lancamento,
               });
               break;
 
@@ -58,6 +77,8 @@ export default function Lancamentos({navigation}) {
               navigate('NovoLancamento', {
                 receita: false,
                 callBack: fetchingList,
+                insert: true,
+                lancamento: lancamento,
               });
               break;
 

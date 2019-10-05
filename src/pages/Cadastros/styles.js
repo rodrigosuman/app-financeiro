@@ -34,7 +34,7 @@ export const SectionDescription = styled.Text`
 `;
 
 export const SectionContent = styled.FlatList.attrs({
-  showsVerticalScrollIndicator: true,
+  showsVerticalScrollIndicator: false,
 })`
   margin-top: 20px;
 `;

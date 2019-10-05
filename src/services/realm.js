@@ -35,6 +35,19 @@ export async function save(schema, data, callBack) {
     });
 }
 
+export async function update(schema, data, callBack) {
+  getRealm()
+    .then(realm => {
+      realm.write(() => {
+        realm.create(schema, data, true);
+        callBack();
+      });
+    })
+    .catch(error => {
+      console.tron.warn(error);
+    });
+}
+
 export function getObjects(
   schema,
   callBack,

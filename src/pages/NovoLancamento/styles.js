@@ -1,10 +1,24 @@
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   background-color: #eee;
   padding: 12px;
+`;
+
+export const FormHeader = styled.View`
+  border-bottom-width: ${StyleSheet.hairlineWidth}px;
+  border-bottom-color: #ccc;
+  margin-bottom: 25px;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const FormHeaderText = styled.Text`
+  font-size: 20px;
+  color: #aaa;
 `;
 
 export const FormContainer = styled.View.attrs({

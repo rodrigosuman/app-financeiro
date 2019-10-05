@@ -18,6 +18,7 @@ import {
   Tag,
   Content,
 } from './styles';
+import {Item} from 'native-base';
 
 function IconCategoria({receita}) {
   let icon = <></>;
@@ -35,9 +36,10 @@ function CategoriaDescricao({descricao}) {
   return <>{descricao}, </>;
 }
 
-export default function Lancamento({data, callBack}) {
+export default function Lancamento({data, callBack, navigation}) {
   const {tipo, pago} = data;
   const translateX = new Animated.Value(0);
+  const {navigate} = navigation;
   let offset = 0;
 
   const animatedEvent = Animated.event(
@@ -132,6 +134,22 @@ export default function Lancamento({data, callBack}) {
             ) : (
               <Icon color="#6BD425" name="check" size={16} />
             )}
+          </Tag>
+
+          <Tag>
+            <Icon
+              onPress={() =>
+                navigate('NovoLancamento', {
+                  receita: data.tipo.receita,
+                  callBack: callBack,
+                  insert: false,
+                  lancamento: data,
+                })
+              }
+              name="edit"
+              color="#2BD9FE"
+              size={20}
+            />
           </Tag>
         </Tags>
 

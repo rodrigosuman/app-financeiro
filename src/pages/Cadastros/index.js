@@ -16,7 +16,7 @@ import {
 
 import Categoria from '~/pages/Categoria';
 
-export default function Lancamentos({navigation}) {
+export default function Cadastros({navigation}) {
   const {navigate} = navigation;
   const [tipos, setTipos] = useState([]);
   const [fetching, setfetching] = useState(false);
@@ -31,12 +31,6 @@ export default function Lancamentos({navigation}) {
         <Section style={{borderTopColor: '#FBB02D'}}>
           <SectionHeader>
             <SectionDescription>Categorias</SectionDescription>
-            {/* <Icon
-            name="playlist-add"
-            size={30}
-            color="#1abc9c"
-            onPress={() => navigate('NovaCategoria')}
-          /> */}
           </SectionHeader>
 
           <SectionContent

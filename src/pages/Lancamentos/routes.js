@@ -19,7 +19,6 @@ const mainNavigation = createStackNavigator(
     NovoLancamento: {
       screen: NovoLancamento,
       navigationOptions: () => ({
-        title: 'Novo Lancamento',
         headerStyle: headerStyle,
         headerTintColor: '#fff',
       }),
