@@ -1,8 +1,10 @@
-#### APP para controle finaceiro com base de dados offline e DrawerNavigator
-Aplicativo para controle financeiro por mes, indicador de saldo disponivel e gráficos de
-custos por tipo de despesa e gastos mensais.
+In this repository, I show my studies performed with React Native and Realmdb.
 
----
+# TODOS
 
-*Nesse repositório, mostro meus estudos realizados com a ferramenta ReactNative, para*
-*a criação de aplicativos nativos, tanto para Android quanto para IOs.*
+[ ] Dashboard: render monthly balance, current balance and income and expenses balance.
+[x] Financial moviments screen.
+[x] CRUD financial moviments.
+[x] Types of financial moviments: screen and CRUD
+[ ] Toggle month on the Financial moviments screen.
+[ ] Charts screen
